@@ -1,0 +1,22 @@
+/*bin/mkdir -p /tmp/.java/classes 2> /dev/null
+
+#These lines allow 'autoexecuting' java files
+
+# Compile the program.
+javac -d /tmp/.java/classes $0
+
+# Run the compiled program only if compilation succeeds.
+[[ $? -eq 0 ]] && java -cp /tmp/.java/classes $(basename ${0%.*}) "$@"
+exit
+*/
+
+/**
+*
+*/
+public class  {
+
+    public static void main (String... args){
+        
+    }
+}
+

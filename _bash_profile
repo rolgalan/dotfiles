@@ -1,0 +1,52 @@
+fortune | cowsay
+echo "Welcome back! :)"
+
+export CLICOLOR=1
+export LSCOLORS=GxFxCxDxBxegedabagaced
+
+#Customize the prompt
+#\d date, \t time, \h host, \u user, # cmd number, \W working directory, \w full path
+#Customization for date '\D{%d.%m.%Y}$ '
+reset=$(tput sgr0)
+bold=$(tput bold)
+export PS1="[\D{%d}]{\t}\[$bold\]\w\[$reset\]/\\$ "
+
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
+#Enable bash completion
+#https://github.com/bobthecow/git-flow-completion/wiki/Install-Bash-git-completion
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+fi
+
+#Enable git branch completion with tab. If this fails, search `locate git-completion.bash` to get the path
+#https://gist.github.com/JuggoPop/10706934
+if [ -f /Library/Developer/CommandLineTools/usr/share/git-core/git-completion.bash ]; then
+  . /Library/Developer/CommandLineTools/usr/share/git-core/git-completion.bash
+   __git_complete g __git_main
+   __git_complete gco _git_checkout
+fi
+
+#Enable a fancy bash-git-prompt
+GIT_PROMPT_ONLY_IN_REPO=1
+#https://github.com/magicmonty/bash-git-prompt
+if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
+  __GIT_PROMPT_DIR=$(brew --prefix)/opt/bash-git-prompt/share
+    source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
+fi
+
+#Aliases
+alias fuck='sudo $(history -p \!\!)'
+
+#Git
+alias g='git'
+alias gl='git lg'
+alias gs='git status'
+alias gb='git branch'
+alias gc='git commit'
+alias gco='git checkout'
+alias gdc='git diff --cached'
+
+#Add android sdk folders to path (adb...)
+export ANDROID_HOME=/Users/$USER/Library/Android/sdk
+export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator
