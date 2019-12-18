@@ -1,30 +1,45 @@
 [alias]
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    #lgh = lg -10
+    #Before version 2.20, git does not accept alias using other alias
+	lgh = "! f() { git lg -10 ; }; f"
+
     hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
 
-	lga = log --branches --tags --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-	lgh = "! f() { git lg | head; }; f"
+    #lga = lg --branches --tags 
+    #Before version 2.20, git does not accept alias using other alias
+    lga = log --branches --tags --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	whatadded = diff-tree --no-commit-id --name-only -r
 	whenchanged = log -p [--follow] [-1]
-	codeadded = "! f() { git log --pretty=oneline -S \"$1\" --source --all; }; f"
+	codeadded = "! f() { git log --pretty=format:'%h %ad | %s%d [%an]' --date=short -S \"$1\" --source --all; }; f"
 	branchdiff = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
     #Sed $d removes last line, which is the summary of changes
     diffsort = "! f() { git diff --stat | sed '$d' | awk '{ print $3,\"\t\",$4,\"\t\",$1}' | sort -n -r; }; f"
+    diffpull = git diff @{1}..
+    dfp = "! f() { git diff $1^..$1;  }; f"
+
     co = checkout
+    cob = checkout -b
     st = status
     br = branch
     df = diff
     dfc = diff --cached
     amend = commit --amend
     amendne = commit --amend --no-edit
-    apt = add --patch
     adp = add --patch
-    rebc = rebase --continue
     rbc = rebase --continue
     rbi = rebase --interactive
+    rba = rebase --interactive --autosquash
     cm = commit -m
     ca = commit -a
     cam = commit -a -m
+    cf = commit --fixup 
+    fixup = commit --fixup
+    pur = pull -r
+    undo = reset --soft HEAD^
+    wait = reset HEAD
+    rod = rebase origin/develop
+
 
 [format]
     #Check what this does pretty = '%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
@@ -45,8 +60,12 @@
     status = auto
     branch = auto
     autobranch = auto
+[commit]
+    template = ~/.gitmessage
 [core]
 	autocrlf = input
 [user]
 	name = rolgalan
 	email = rolgalan@gmail.com
+[credential]
+	helper = osxkeychain

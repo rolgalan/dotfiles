@@ -16,13 +16,14 @@ set hlsearch                    " highlight search terms
 set incsearch                   " show search matches as you type
 set autoindent                  " always set autoindenting on
 set copyindent                  " copy the previous indentation on autoindenting
+set shiftwidth=4                " set indentation to 4 spaces
 set scrolloff=4                 " keep 4 lines off the edges of the screen when scrolling
 set tabstop=4			        " tab are measured as 4 spaces
 set expandtab			        " tab key insert spaces instead of tabs
 set nostartofline               " Don't reset cursor to start of line when moving around.
 "set shortmess=atI              " Don't show the intro message when starting Vim
 set showcmd                     " Show the (partial) command as it's being typed
-"filetype on                     " Enable file type detection
+filetype on                     " Enable file type detection
 
 " Use relative line numbers
 "if exists("&relativenumber")

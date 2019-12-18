@@ -4,6 +4,8 @@
 cp ~/.gitconfig _gitconfig
 cp ~/.bash_profile _bash_profile
 cp ~/.vimrc _vimrc
+cp ~/.gitmessage _gitmessage
+
 
 mkdir vim
 cp ~/.vim/sh_header.temp vim

@@ -21,4 +21,4 @@ brew install brew-cask-completion
 
 #Others
 brew cask install macdown texmaker quicklookapk
-brew install git-extras git-lfs git-flow imagemagik wget python3 tldr brew-cask-completion lua gngpg
+brew install git-extras git-lfs git-flow imagemagik wget python3 tldr brew-cask-completion lua gngpg gnuplot

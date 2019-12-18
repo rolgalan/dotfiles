@@ -1,6 +1,10 @@
 fortune | cowsay
 echo "Welcome back! :)"
 
+#Several tools like gpg use the LANG variable for default language
+export LANG="en_US.UTF-8"
+
+
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
@@ -45,8 +49,24 @@ alias gs='git status'
 alias gb='git branch'
 alias gc='git commit'
 alias gco='git checkout'
+alias gcob='git checkout -b'
 alias gdc='git diff --cached'
 
 #Add android sdk folders to path (adb...)
 export ANDROID_HOME=/Users/$USER/Library/Android/sdk
 export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator
+
+#Fastlane integration
+export PATH="$HOME/.fastlane/bin:$PATH"
+
+#C: full screen reptrint faster; M: more info in status line
+#I: ignore case search; j 10: show results in line 10 instead of 1
+## 8: jump 8 charcters left/right instead of half screen
+#export LESS='-C -M -I -j 10 -# 8'
+
+#Enable GPG
+GPG_TTY=$(tty)
+export GPG_TTY
+
+#Load private keys (not push this file to any public repo!)
+source ~/.bash_private
