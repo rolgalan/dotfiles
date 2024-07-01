@@ -1,7 +1,8 @@
-# [JIRA issue number] <type>: (If applied, this commit will...) <subject> (Max 50 char)
+#[ticket ID] (If applied, this commit will...) <subject> (Max 50 char)
 # |<----  Using a Maximum Of 50 Characters  ---->|
-[CX-]
+[MOB-]
 
+# |<---------------  Using a Maximum Of 72 Characters  --------------->|
 # Remember to
 #    Capitalize the subject line
 #    Use the imperative mood in the subject line

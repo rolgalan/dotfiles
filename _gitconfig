@@ -1,14 +1,13 @@
-[alias]
+ [alias]
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-    #lgh = lg -10
+    lgh = lg -10
     #Before version 2.20, git does not accept alias using other alias
-	lgh = "! f() { git lg -10 ; }; f"
-
+    #lgh = "! f() { git lg -10 ; }; f"
     hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
 
-    #lga = lg --branches --tags 
+    lga = lg --branches --tags 
     #Before version 2.20, git does not accept alias using other alias
-    lga = log --branches --tags --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    #lga = log --branches --tags --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	whatadded = diff-tree --no-commit-id --name-only -r
 	whenchanged = log -p [--follow] [-1]
 	codeadded = "! f() { git log --pretty=format:'%h %ad | %s%d [%an]' --date=short -S \"$1\" --source --all; }; f"
@@ -17,6 +16,9 @@
     diffsort = "! f() { git diff --stat | sed '$d' | awk '{ print $3,\"\t\",$4,\"\t\",$1}' | sort -n -r; }; f"
     diffpull = git diff @{1}..
     dfp = "! f() { git diff $1^..$1;  }; f"
+    tags = tag -l --sort=-creatordate --format='%(creatordate:short): %(refname:short)'
+    printags = log --color --oneline --pretty=format:'%Cred%h%Creset = %Cgreen%cd =%C(yellow)%d%Creset = %s' --abbrev-commit --first-parent --date=short
+    codate = "!d=\"$(git parsedate \"$1\")\" && shift && git checkout \"$(git rev-list -n1 --first-parent --before=\"$d\" HEAD)\""
 
     co = checkout
     cob = checkout -b
@@ -24,13 +26,14 @@
     br = branch
     df = diff
     dfc = diff --cached
-    amend = commit --amend
-    amendne = commit --amend --no-edit
     adp = add --patch
     rbc = rebase --continue
     rbi = rebase --interactive
     rba = rebase --interactive --autosquash
+    amend = commit --amend
+    amendne = commit --amend --no-edit
     cm = commit -m
+    cmn = commit --no-verify -m
     ca = commit -a
     cam = commit -a -m
     cf = commit --fixup 
@@ -39,8 +42,14 @@
     undo = reset --soft HEAD^
     wait = reset HEAD
     rod = rebase origin/develop
+    rom = rebase origin/main
+    fp = "! f() { git fetch && git pull  }; f"
+    pnv = push --no-verify
 
-
+[pull]
+    rebase = true
+[fetch]
+    prune = true
 [format]
     #Check what this does pretty = '%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
 [merge]
@@ -51,6 +60,7 @@
 [mergetool]
 	keepBackup = false
 [diff]
+    colorMoved = zebra
 	tool = p4mergetool
 [difftool "p4mergetool"]
 	cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge $LOCAL $REMOTE
@@ -69,3 +79,5 @@
 	email = rolgalan@gmail.com
 [credential]
 	helper = osxkeychain
+[init]
+	defaultBranch = main
