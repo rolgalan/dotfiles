@@ -6,7 +6,8 @@
 #Author       	: Roldán Galán Lafarga
 #Email         	: rolgalan@gmail.com 
 ###################################################################
-# Bash template source: https://gist.github.com/m-radzikowski/53e0b39e9a59a1518990e76c2bff8038
+# script-template.sh source: https://gist.github.com/m-radzikowski/53e0b39e9a59a1518990e76c2bff8038
+# https://betterdev.blog/minimal-safe-bash-script-template/
 ###################################################################
 
 set -Eeuo pipefail
