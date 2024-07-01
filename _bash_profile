@@ -4,6 +4,8 @@ echo "Welcome back! :)"
 #Several tools like gpg use the LANG variable for default language
 export LANG="en_US.UTF-8"
 
+## Load rbenv automatically 
+eval "$(rbenv init -)"
 
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
@@ -59,6 +61,9 @@ export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HO
 #Fastlane integration
 export PATH="$HOME/.fastlane/bin:$PATH"
 
+#Python bin folder
+export PATH="$PATH:$HOME/Library/Python/2.7/bin"
+
 #C: full screen reptrint faster; M: more info in status line
 #I: ignore case search; j 10: show results in line 10 instead of 1
 ## 8: jump 8 charcters left/right instead of half screen
@@ -70,3 +75,18 @@ export GPG_TTY
 
 #Load private keys (not push this file to any public repo!)
 source ~/.bash_private
+
+# Load aliases from separate file
+source ~/.bash_alias
+
+# Added by serverless binary installer
+export PATH="$HOME/.serverless/bin:$PATH"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/rolgalan/.sdkman"
+[[ -s "/Users/rolgalan/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/rolgalan/.sdkman/bin/sdkman-init.sh"
+
+#NVM to switch node environments
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
+export PATH="/usr/local/sbin:$PATH"
